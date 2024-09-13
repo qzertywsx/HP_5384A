@@ -23,6 +23,9 @@ class HP_5384A(object):
 		DEC  = 1
 		NORMAL = 2
 	
+	def __str__(self):
+		return "HP 5384A address: " + str(self.address)
+	
 	def preCommand(self):
 		if self.gpib.address != self.address or self.firstTime:
 			self.firstTime = False
