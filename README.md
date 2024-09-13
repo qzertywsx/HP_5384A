@@ -93,5 +93,5 @@ freq.local()
 ```
 ## Result of executing the above code (Not done yet):
 ```
-GPIB address: 3, IP: 192.168.178.36
+GPIB address: 1, IP: 192.168.178.36
 ```
