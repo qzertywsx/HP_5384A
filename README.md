@@ -5,7 +5,7 @@ You must use my GPIB or GPIB_WIFI module to use this module.
 
 ## Supported command:
 ### get_IDN()
-Return the *IDN? of the instrument
+Return the ID of the instrument
 
 ### reset()
 Reset the instrument to the default state
