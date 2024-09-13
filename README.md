@@ -89,6 +89,7 @@ freq = HP_5384A( gpib, 1)
 freq.setFilter(True)
 freq.setGateTime(HP_5384A.GateTime.T1S)
 print(freq.measure(HP_5384A.Function.FREQ_A))
+freq.local()
 ```
 ## Result of executing the above code (Not done yet):
 ```
