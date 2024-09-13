@@ -53,6 +53,15 @@ Take a measurement
 </table>
 Return the measured as real value
 
+### digit()
+Set the digit number
+<table>
+  <tr><td>gateTime</td><td>Description</td></tr>
+  <tr><td>HP_5384A.Digit.INC</td><td>Increment the digit number</td></tr>
+  <tr><td>HP_5384A.Digit.DEC</td><td>Decrement the digit number</td></tr>
+  <tr><td>HP_5384A.Digit.NORMAL</td><td>Set the default digit number</td></tr>
+</table>
+
 ### setDisplay(on)
 Switch the display on or off
 <table>
@@ -66,15 +75,6 @@ Set the display to normal mode (Show the measured value)
 
 ### setDisplayText(text)
 Set a custom `text` on the display (Max 12 character)
-
-### digit()
-Set the digit number
-<table>
-  <tr><td>gateTime</td><td>Description</td></tr>
-  <tr><td>HP_5384A.Digit.INC</td><td>Increment the digit number</td></tr>
-  <tr><td>HP_5384A.Digit.DEC</td><td>Decrement the digit number</td></tr>
-  <tr><td>HP_5384A.Digit.NORMAL</td><td>Set the default digit number</td></tr>
-</table>
 
 ### local()
 Go to local mode (Reenable the front panel control)
