@@ -51,7 +51,7 @@ Take a measurement
   <tr><td>HP_5384A.Function.PER_A</td><td>Measure period on channel A [Seconds]</td></tr>
   <tr><td>HP_5384A.Function.FREQ_B</td><td>Measure frequency on channel B [Hz]</td></tr>
 </table>
-Return the measured as real value
+Return the measurement as real value
 
 ### digit()
 Set the digit number
