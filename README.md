@@ -1,5 +1,5 @@
 # HP_5384A
-Python module for the HP 5384A frequency counter.
+Python module for the HP 5384A 225MHz frequency counter.
 
 You must use my GPIB or GPIB_WIFI module to use this module.
 
