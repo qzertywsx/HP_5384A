@@ -84,6 +84,15 @@ class HP_5384A(object):
 		except:
 			return False
 	
+	def digit(self, dig):
+		self.preCommand()
+		if dig == self.Digit.INC:
+			self.gpib.write("DI")
+		elif dig == self.Digit.DEC:
+			self.gpib.write("DD")
+		elif dig == self.Digit.NORMAL:
+			self.gpib.write("DN")
+	
 	def setDisplay(self, on):
 		self.preCommand()
 		if on:
@@ -98,15 +107,6 @@ class HP_5384A(object):
 	def setDisplayText(self, text):
 		self.preCommand()
 		self.gpib.write(f"DR{text}")
-	
-	def digit(self, dig):
-		self.preCommand()
-		if dig == self.Digit.INC:
-			self.gpib.write("DI")
-		elif dig == self.Digit.DEC:
-			self.gpib.write("DD")
-		elif dig == self.Digit.NORMAL:
-			self.gpib.write("DN")
 	
 	def local(self):
 		self.preCommand()
