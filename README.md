@@ -10,7 +10,7 @@ Return the ID of the instrument
 ### reset()
 Reset the instrument to the default state
 
-### setFilter(on)
+### enableFilter(on)
 Set the filter
 <table>
   <tr><td>on</td><td>Description</td></tr>
@@ -18,7 +18,7 @@ Set the filter
   <tr><td>False</td><td>Disable the filter</td></tr>
 </table>
 
-### setAttenuator(on)
+### enableAttenuator(on)
 Set the attenuator
 <table>
   <tr><td>on</td><td>Description</td></tr>
@@ -62,7 +62,7 @@ Set the digit number
   <tr><td>HP_5384A.Digit.NORMAL</td><td>Set the default digit number</td></tr>
 </table>
 
-### setDisplay(on)
+### setDisplayState(on)
 Switch the display on or off
 <table>
   <tr><td>on</td><td>Description</td></tr>
@@ -86,7 +86,7 @@ from HP_5384A import HP_5384A
 
 gpib = AR488_WIFI('192.168.178.36', timeout=5)
 freq = HP_5384A( gpib, 1)
-freq.setFilter(True)
+freq.enableFilter(True)
 freq.setGateTime(HP_5384A.GateTime.T1S)
 print(freq.measure(HP_5384A.Function.FREQ_A))
 freq.local()
