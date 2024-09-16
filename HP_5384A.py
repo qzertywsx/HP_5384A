@@ -1,10 +1,12 @@
 from enum import Enum
+import time
 
 class HP_5384A(object):
 	def __init__(self, gpib, addr):
 		self.address = addr
 		self.gpib = gpib
 		self.firstTime = True
+		self._delay = 0.4
 		self.gpib.write("++read_tmo_ms 1200")
 		self._preCommand()
 	
@@ -71,12 +73,15 @@ class HP_5384A(object):
 		self._preCommand()
 		if gateTime == self.GateTime.T0S1:
 			self.gpib.write("GA1")
+			self._delay = 0.4
 			self.gpib.write("++read_tmo_ms 1200")
 		if gateTime == self.GateTime.T1S:
+			self._delay = 1.2
 			self.gpib.write("GA2")
 			self.gpib.write("++read_tmo_ms 1200")
 		if gateTime == self.GateTime.T10S:
 			self.gpib.write("GA3")
+			self._delay = 10.2
 			self.gpib.write("++read_tmo_ms 15000")
 	
 	def measure(self, function):
@@ -88,10 +93,9 @@ class HP_5384A(object):
 			self.gpib.write("FU2")
 		elif function == self.Function.FREQ_B:
 			self.gpib.write("FU3")
-		
+
 		try:
-			return self.gpib.query("++read")
-			return float(self.gpib.query("++read").replace("F", "").replace("S", "").strip())
+			return float(self.gpib.query("++read", sleep=self._delay).replace("F", "").replace("S", "").strip())
 		except:
 			return False
 	
