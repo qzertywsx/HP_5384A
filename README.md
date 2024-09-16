@@ -91,7 +91,8 @@ freq.setGateTime(HP_5384A.GateTime.T1S)
 print(freq.measure(HP_5384A.Function.FREQ_A))
 freq.local()
 ```
-## Result of executing the above code (Not done yet):
+## Result of executing the above code:
 ```
-GPIB address: 1, IP: 192.168.178.36
+HP 5384A address: 1
+freq: 17200.001 Hz
 ```
