@@ -85,7 +85,7 @@ from GPIB_WIFI import AR488_WIFI
 from HP_5384A import HP_5384A
 
 gpib = AR488_WIFI('192.168.178.36', timeout=5)
-freq = HP_5384A( gpib, 1)
+freq = HP_5384A(gpib, 1)
 freq.enableFilter(True)
 freq.setGateTime(HP_5384A.GateTime.T1S)
 print(freq.measure(HP_5384A.Function.FREQ_A))
