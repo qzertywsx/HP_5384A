@@ -6,7 +6,7 @@ class HP_5384A(object):
 		self.gpib = gpib
 		self.firstTime = True
 		self.gpib.write("++read_tmo_ms 1200")
-		self.preCommand()
+		self._preCommand()
 	
 	class GateTime(Enum):
 		T0S1 = 0
@@ -26,42 +26,49 @@ class HP_5384A(object):
 	def __str__(self):
 		return "HP 5384A address: " + str(self.address)
 	
-	def preCommand(self):
+	def _preCommand(self):
+		"""Command to be executed before every other command"""
 		if self.gpib.address != self.address or self.firstTime:
 			self.firstTime = False
 			self.gpib.set_address(self.address)
 			self.gpib.write("++eor 2")
 	
 	def get_IDN(self):
+		"""Return the ID of the instrument"""
 		return self.gpib.get_IDN("ID")
 	
 	def reset(self):
-		self.preCommand()
+		"""Reset the instrument to the default state"""
+		self._preCommand()
 		self.gpib.write("IN")
 	
-	def setFilter(self, on):
-		self.preCommand()
+	def enableFilter(self, on):
+		"""Enable the filter"""
+		self._preCommand()
 		if on:
 			self.gpib.write("FI1")
 		else:
 			self.gpib.write("FI0")
 			
-	def setAttenuator(self, on):
-		self.preCommand()
+	def enableAttenuator(self, on):
+		"""Enable the attenuator"""
+		self._preCommand()
 		if on:
 			self.gpib.write("AT1")
 		else:
 			self.gpib.write("AT0")
 		
 	def setManLevel(self, on):
-		self.preCommand()
+		"""Set the manual level control"""
+		self._preCommand()
 		if on:
 			self.gpib.write("ML1")
 		else:
 			self.gpib.write("ML0")
 	
 	def setGateTime(self, gateTime):
-		self.preCommand()
+		"""Set the gate time"""
+		self._preCommand()
 		if gateTime == self.GateTime.T0S1:
 			self.gpib.write("GA1")
 			self.gpib.write("++read_tmo_ms 1200")
@@ -73,7 +80,8 @@ class HP_5384A(object):
 			self.gpib.write("++read_tmo_ms 15000")
 	
 	def measure(self, function):
-		self.preCommand()
+		"""Take a measurement"""
+		self._preCommand()
 		if function == self.Function.FREQ_A:
 			self.gpib.write("FU1")
 		elif function == self.Function.PER_A:
@@ -88,7 +96,8 @@ class HP_5384A(object):
 			return False
 	
 	def digit(self, dig):
-		self.preCommand()
+		"""Set the digit number"""
+		self._preCommand()
 		if dig == self.Digit.INC:
 			self.gpib.write("DI")
 		elif dig == self.Digit.DEC:
@@ -96,21 +105,25 @@ class HP_5384A(object):
 		elif dig == self.Digit.NORMAL:
 			self.gpib.write("DN")
 	
-	def setDisplay(self, on):
-		self.preCommand()
+	def setDisplayState(self, on):
+		"""Switch the display on or off"""
+		self._preCommand()
 		if on:
 			self.gpib.write("DL")
 		else:
 			self.gpib.write("DR            ")
 	
 	def setDisplayNormal(self):
-		self.preCommand()
+		"""Set the display to normal mode (Show the measured value)"""
+		self._preCommand()
 		self.gpib.write("DL")
 	
 	def setDisplayText(self, text):
-		self.preCommand()
+		"""Set a custom text on the display (Max 12 character)"""
+		self._preCommand()
 		self.gpib.write(f"DR{text}")
 	
 	def local(self):
-		self.preCommand()
+		"""Go to local mode (Reenable the front panel control)"""
+		self._preCommand()
 		self.gpib.local()
