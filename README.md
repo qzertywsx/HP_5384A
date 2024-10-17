@@ -81,10 +81,10 @@ Go to local mode (Reenable the front panel control)
 
 ## Usage:
 ```python
-from GPIB_WIFI import AR488_WIFI
-from HP_5384A import HP_5384A
+from gpib_all import AR488Wifi
+from hp_5384a import HP5384A
 
-gpib = AR488_WIFI('192.168.178.36', timeout=5)
+gpib = AR488Wifi('192.168.178.36')
 freq = HP5384A(gpib, 1)
 print(freq)
 freq.enable_filter(True)
